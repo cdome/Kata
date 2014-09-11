@@ -8,6 +8,7 @@ package romantoarabic.groovy
 class Converter {
 
     private final Map<String, Integer> romanToArabic = new HashMap<String, Integer>();
+    private final Map<Integer, String> arabicToRoman = new HashMap<Integer, String>();
 
     Converter() {
         romanToArabic.put("I",        1);
@@ -30,10 +31,19 @@ class Converter {
         romanToArabic.put("DCCLXV",   765);
         romanToArabic.put("CXI",      111);
         romanToArabic.put("CCXXII",   222);
+
+        for (key in romanToArabic.keySet()) {
+            def value = romanToArabic.get(key);
+            arabicToRoman.put(value, key);
+        }
     }
 
     def convertToArabic(String roman) {
         return romanToArabic.get(roman);
+    }
+
+    def convertToRoman(int arabic) {
+        return arabicToRoman.get(arabic);
     }
 
 }
